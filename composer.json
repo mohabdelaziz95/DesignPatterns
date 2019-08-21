@@ -1,0 +1,12 @@
+{
+    "autoload": {
+        "psr-4": {
+            "Patterns\\" : "patterns/"
+        }
+    },
+
+    "require-dev": {
+        "symfony/var-dumper": "^4.3",
+        "phpunit/phpunit": "^8"
+    }
+}
