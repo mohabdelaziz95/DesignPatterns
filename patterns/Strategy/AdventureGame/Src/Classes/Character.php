@@ -18,7 +18,7 @@ abstract class Character
      * Character constructor.
      * @param $weaponBehavior
      */
-    public function __construct(Weapon $weaponBehavior)
+    public function __construct(Weapon $weaponBehavior = null)
     {
         $this->weaponBehavior = $weaponBehavior;
     }

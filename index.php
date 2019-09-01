@@ -1,30 +1,18 @@
 <?php
 require "vendor/autoload.php";
 
-use Patterns\Strategy\AdventureGame\Src\Behaviors\AxeBehavior;
-use Patterns\Strategy\AdventureGame\Src\Behaviors\knifeBehavior;
-use Patterns\Strategy\AdventureGame\Src\Behaviors\SwordBehavior;
-use Patterns\Strategy\AdventureGame\Src\Classes\King;
-use Patterns\Strategy\AdventureGame\Src\Classes\Knight;
-use Patterns\Strategy\AdventureGame\Src\Classes\Queen;
-use Patterns\Strategy\AdventureGame\Src\Classes\Troll;
-use Patterns\Strategy\DuckExample\Src\Behaviors\FlyNoWay;
-use Patterns\Strategy\DuckExample\Src\Behaviors\FlyWithWings;
-use Patterns\Strategy\DuckExample\Src\Behaviors\Quack;
-use Patterns\Strategy\DuckExample\Src\Behaviors\Squeak;
-use Patterns\Strategy\DuckExample\Src\Classes\MallardDuck;
-use Patterns\Strategy\DuckExample\Src\Classes\RubberDuck;
-
+use Patterns\Factory\FactoryMethod\CharacterFactory;
+use Patterns\Factory\FactoryMethod\WeaponFactory;
 
 /**
  * ------------ Strategy Pattern DuckExample ------------
 */
-$mallard_duck = new MallardDuck(new FlyWithWings(), new Quack());
+/*$mallard_duck = new MallardDuck(new FlyWithWings(), new Quack());
 $rubber_duck = new RubberDuck(new FlyNoWay(), new Quack());
 
-//dump($rubber_duck->quack());
-//$rubber_duck->setQuackBehavior(new Squeak());
-//dump($rubber_duck->quack());
+dump($rubber_duck->quack());
+$rubber_duck->setQuackBehavior(new Squeak());
+dump($rubber_duck->quack());*/
 /**
  * ------------ Strategy Pattern DuckExample ------------
  */
@@ -33,8 +21,68 @@ $rubber_duck = new RubberDuck(new FlyNoWay(), new Quack());
  * ------------ Strategy Pattern AdventureGame ------------
  */
 
-$king = new King(new AxeBehavior());
-dump($king->fight());
+/*echo "plz provide a valid situation";
+
+$situation = fgets(STDIN);;
+
+if ($situation == "use a sword") {
+    $knight = new Knight(new SwordBehavior());
+
+} elseif ($situation == "use a knife") {
+    $knight = new Knight(new knifeBehavior());
+
+} elseif ($situation == "use an axe") {
+    $knight = new Knight(new AxeBehavior());
+
+} else {
+    throw new Exception("not recognised behavior");
+}
+
+dd($knight->fight());
 /**
  * ------------ Strategy Pattern AdventureGame ------------
+ */
+
+
+
+/**
+ * ------------ Simple Factory AdventureGame ------------
+ */
+//echo "plz provide a valid situation: \n" ;
+//
+//$situation = str_replace("\n", '', fgets(STDIN));
+//$character = SimpleCharacterFactory::makeCharacter('knight');
+//
+//try {
+//    $knight = SimpleWeaponBehaviorFactory::createAction($situation, $character);
+//} catch (Exception $e) {
+//    dump($e->getMessage());
+//}
+//
+//
+//dd($knight->fight());*/
+
+/**
+ * ------------ Simple Factory AdventureGame ------------
+ */
+
+/**
+ * ------------ Factory Method Pattern ------------
+ */
+
+echo "plz provide a valid situation: \n" ;
+
+$situation = str_replace("\n", '', fgets(STDIN));
+
+try {
+    $weapon = WeaponFactory::make($situation);
+} catch (Exception $e) {
+    dump($e->getMessage());
+}
+$character = CharacterFactory::makeWith($weapon);
+
+dd($character->fight());
+
+/**
+ * ------------ Factory Method Pattern ------------
  */
